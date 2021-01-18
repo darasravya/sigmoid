@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './App.css';
-// import MainContent from './MainContent';
 import { TokenContext } from "./TokenContext.js";
 import DashBoard from './DashBoard';
 import Login from './Login';
