@@ -30,13 +30,13 @@ function Login() {
   return (
     <div className="">
       <Header title={"Login Page"}/>
-      <content className="">
+      <div className="login-page-outer">
           <div className="login-content">
-            <div className="">
+            <div className="fields">
                 <label>Email</label>
                 <input type='email' placeholder='Enter email' name='email' onChange={useCallback((e)=> setEmail(e.target.value))}></input>
             </div>
-            <div>
+            <div className="fields">
                 <label>Password</label>
                 <input type='password' placeholder='Enter password' name='password' onChange={useCallback((e)=> setPassword(e.target.value))}></input>
             </div>
@@ -46,7 +46,7 @@ function Login() {
                 Remember Me
             </label>
           </div>
-      </content>
+      </div>
     </div>
   );
 }

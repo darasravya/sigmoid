@@ -2,3 +2,7 @@
   width: 33%;
   float: left;
 }
+
+.date-picker {
+  margin-bottom: 20px;
+}

@@ -67,8 +67,8 @@ function DashBoard() {
             .post('https://sigviewauth.sigmoid.io/api/v1/getDateRange', data, {headers})
             .then(data => {
                 console.log("date range success : ");
-                setStartRange(new Date(parseInt(data.data.result['startDate'])).toString());
-                setEndRange(new Date(parseInt(data.data.result['endDate'])).toString());
+                setStartRange(parseInt(data.data.result['startDate']));
+                setEndRange(parseInt(data.data.result['endDate']));
             })
             .catch(err => {
                 console.log(JSON.stringify(err));
@@ -310,40 +310,39 @@ function DashBoard() {
     }, [startDate, endDate])
 
   return (
-      console.log("sravya:: " + startDate),
     <React.Fragment>
         <Header title={"Data Vizualization"}/>
         <div className="dashboard-content">
             <p>Pick the range</p>
-            <span>
-                <DatePicker
-                    className="react-datepicker-wrapper"
-                    placeholderText = "Select Start Date"
-                    showTimeSelect
-                    dateFormat="MMMM d, yyyy h:mmaa"
-                    selected={startDate}
-                    startDate={startRange}
-                    endDate={endRange}
-                    startRange={new Date()}
-                    minDate={startRange}
-                    variant="inline"
-                    onChange={date => setStartDate(Date.parse(date.toString()))}
-                />
-            {/* </span>
-            <span> */}
-                <DatePicker
-                    className="react-datepicker-wrapper"
-                    placeholderText = "Select End Date"
-                    showTimeSelect
-                    variant="inline"
-                    dateFormat="MMMM d, yyyy h:mmaa"
-                    selected={endDate}
-                    startDate={startRange}
-                    endDate={endRange}
-                    minDate={startDate}
-                    onChange={date => setEndDate(Date.parse(date.toString()))}
-                />
-            </span>
+            <div className="date-picker">
+              <DatePicker
+                  className="react-datepicker-wrapper"
+                  placeholderText = "Select Start Date"
+                  showTimeSelect
+                  dateFormat="MMMM d, yyyy h:mmaa"
+                  selected={startDate}
+                  startDate={startRange}
+                  endDate={endRange}
+                  minDate={new Date(startRange)}
+                  maxDate={new Date(endRange)}
+                  onChange={date => setStartDate(Date.parse(date.toString()))}
+              />
+            </div>
+            <div className="date-picker">
+              <DatePicker
+                  className="react-datepicker-wrapper"
+                  placeholderText = "Select End Date"
+                  showTimeSelect
+                  // variant="inline"
+                  dateFormat="MMMM d, yyyy h:mmaa"
+                  selected={endDate}
+                  startDate={startRange}
+                  endDate={endRange}
+                  minDate={startDate}
+                  maxDate={new Date(endRange)}
+                  onChange={date => setEndDate(Date.parse(date.toString()))}
+              />
+            </div>
             <div>Display charts</div>
             <span className="charts">
                 <Plot data={[

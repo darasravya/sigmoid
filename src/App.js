@@ -13,8 +13,7 @@ function App() {
       <div id="main-page">
         <TokenContext.Provider value={[token, setToken]}>
         <div className="main-content">
-            {/* {token!=='' ? <DashBoard /> : <Login />} */}
-            <DashBoard />
+            {token!=='' ? <DashBoard /> : <Login />}
         </div>
         </TokenContext.Provider>
       </div>
